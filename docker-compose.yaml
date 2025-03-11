@@ -93,20 +93,22 @@ services:
       - ming-i
 
   pilight:
-    build: ./pilight
+    image: akloeckner/pilight:nightly
     container_name: ming-pilight
     hostname: pilight
     networks:
       - ming-network
     init: true # use init process, because pilight leaves behind pid file when not exited cleanly
     volumes:
-    - pilight-config:/etc/pilight # be sure to change the host's path to your config here
+    - ./pilight/config:/etc/pilight # be sure to change the host's path to your config here
     ports:
     - 5000:5000 # usual daemon port
     - 5001:5001 # usual HTTP port
     - 5002:5002 # usual HTTPS port
-    #devices:
+    devices:
+    - /sys/class/gpio:/dev/sys/class/gpio # if you have e.g. a raspi
     #- /dev/ttyUSB0:/dev/ttyUSB0 # if you have a 433nano device
+
     #restart: unless-stopped # if you want to auto-restart the container
 
 volumes:
@@ -118,7 +120,6 @@ volumes:
   ming-n-data:
   ming-g-data:
   ming-t-config:
-  pilight-config:
 
 networks:
   ming-network:

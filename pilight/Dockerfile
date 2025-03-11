@@ -1,5 +1,6 @@
 # cf. https://github.com/akloeckner/pilight-docker/
-FROM debian:bookworm
+# stretch is the last working release :-(
+FROM debian:stretch
 
 # Dependencies for pilight repository
 RUN apt-get update && apt-get install -y wget gnupg2 apt-transport-https ca-certificates \
