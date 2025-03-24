@@ -1,5 +1,17 @@
 
 services:
+  traefik:
+    image: traefik:v3
+    container_name: ming-traefik
+    ports:
+      - "8080:8080"
+      - "80:80"
+    volumes:
+      - ./traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      ming-network:
+    restart: unless-stopped
 
   ming-m:
     build: ./mosquitto
