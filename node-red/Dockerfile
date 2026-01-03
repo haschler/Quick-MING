@@ -1,4 +1,4 @@
-FROM nodered/node-red:4.0.9-minimal
+FROM nodered/node-red:4.1.2-22-minimal
 
 USER root
 
