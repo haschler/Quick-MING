@@ -16,7 +16,6 @@ services:
   ming-m:
     build: ./mosquitto
     restart: unless-stopped
-    image: ming-mosquitto
     container_name: ming-mosquitto
     hostname: mosquitto
     ports:
